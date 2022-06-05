@@ -33,16 +33,89 @@
             <div class="inner">
                 <h1 class="major">Dictators and Economics</h1>
                 <span class="image fit"><img src="images/pic04.jpg" alt="" /></span>
-                <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                    venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor
-                    sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu
-                    massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-                    Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis,
-                    hendrerit tristique.</p>
-                <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet
-                    dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque
-                    leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum
-                    convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+                <p>November 16, 2021</p>
+                <p>Can a strong leader be good for a country's economy? Let's to take a look at data.
+                    There are so many factors that must be taken into an account, and to be fair,
+                    this is a topic that needs deep research of every country that had a dictator
+                    with lots of data to talk about consequences and draw the best conclusion.
+                    However, it is not my doctorate and I will be looking at simple factors like average GDP growth,
+                    inflation rate, income, etc. in order to try to answer the following question,
+                    is there any correlation between years ruled and the economic condition of the country?
+                </p>
+                <p>According to the different sources, there are fifty current dictators in the world.
+                    Nineteen in Africa, twelve in the Middle East, eight in Asia, seven in Euroasia, and one in Europe.
+                    To make sure that I eliminate options where possibly current dictators' decisions haven't kicked in
+                    yet
+                    I will only work with available data from the countries that had one same leader for over the past
+                    fifteen years,
+                    starting the following year after the ruler came to the authority. This reduces the list to the
+                    following:
+                </p>
+                <ul>
+                    <li>Cameroon, leader Paul Biya since 30 June 1975</li>
+                    <li>Equatorial Guinea, leader Teodoro Mbasogo since 3 August 1979</li>
+                    <li>Iran, leader Ali Khamenei since 13 October 1981</li>
+                    <li>Cambodia, leader Hun Sen since 26 December 1984</li>
+                    <li>Uganda, leader Yoweri Museveni since 26 January 1986</li>
+                    <li>Kazakhstan, leader Nursultan Nazarbayev since 16 December 1991</li>
+                    <li>Tajikistan, leader Emomali Rahmon since 19 November 1992</li>
+                    <li>Belarus, leader Alexander Lukashenko since 20 July 1994</li>
+                    <li>Rwanda, leader Paul Kagame since 22 April 2000</li>
+                    <li>Russia, leader Vladimir Putin since 8 May 2000</li>
+                    <li>Turkey, leader Recep Erdogan since 14 March 2003</li>
+                    <li>Azerbaijan, leader Ilham Aliyev since 4 August 2003</li>
+                    <li>Uzbekistan, leader Shavkat Mirziyoyev since 12 December 2003</li>
+                </ul>
+                <p>This list may seem incomplete because we don't have some obvious dictatorships like North Korea or
+                    Venezuela.
+                    This is the case for the following reasons: North Korea data is not available just like
+                    Djibouti, Eritrea, and Syria (which are not on the list as well)
+                    and Nicolas Maduro had been in the office only since 2013 which does not fit 15 years criteria.
+                </p>After collecting the data using <a href="https://data.worldbank.org/">Worldbank data</a>
+                and <a href="https://www.heritage.org/index/ranking">Heritage Foundation data</a> I had to clean it.
+                This is what it looked like before putting it in R.
+                <div><img src="images/dictatorscleandata.png" class="image fit" /></div>
+                <ul>
+                    <li>YRRLD - YTD Length of term</li>
+                    <li>AAGGDP - Average Annual GDP Growth during the term</li>
+                    <li>AAIR - Average Annual Inflation Rate during the term</li>
+                    <li>AAFI - Average Annual Foreign Investment</li>
+                    <li>ATGDPP - Average Trade GDP Percentage</li>
+                    <li>AGDPPC - Average GDP Per Capita</li>
+                    <li>AGNIPC - Average GNI Per Capita</li>
+                    <li>FIO - Freedom Index Overall According to Heritage.org, out of 100</li>
+                    <li>BF - Business Freedom</li>
+                    <li>TF - Trade Freedom</li>
+                </ul>
+                <p>Now it is a good time to upload it to R and see results. I'll be using linear regression
+                    to check different paramenters and see if there is any statistically significant correlation.
+                </p>
+                <p>13 countries, 13 a little different but mostly similar stories. Every single country with a strong
+                    leader is beating the EU, USA,
+                    and world average in terms of average GDP growth and has a higher inflation rate. Also, every single
+                    country except for Russia on the
+                    list has a negative average annual foreign direct investment which means investors are leaving over
+                    time. 6 countries are losing on
+                    average over a billion in foreign investments year over a year.
+                </p>
+                <p>According to the quick snapshots, I find it intriguing that countries that do trade with China tend
+                    to be less free in terms of
+                    economics and more corrupt. For instance, Azerbaijan, the highest-ranked country on the Economic
+                    Freedom List (ranked 38) out of our list does not
+                    have China in the main trade partner list while Iran, the lowest-ranked country on the list (ranked
+                    168) does 48% of exports to China and 28% of imports from China
+                    (the highest percentage in the list).
+                </p>
+                <p>Now, more important results are necessary for answering the question, what does the length of the
+                    term affect.
+                    According to R, we can see a clear correlation between years ruled, inflation rate, freedom index,
+                    business freedom, and trade freedom.
+                    With an R squared score of .8532, we can conclude that one year of dictatorship means -0.7 in
+                    Freedom Index, -0.23 in Business Freedom,
+                    -0.58 in Trade Freedom, and every 10 years of having a strong leader would result in having around
+                    18.69% of inflation per year!
+                </p>
+                </p>
             </div>
         </section>
 
